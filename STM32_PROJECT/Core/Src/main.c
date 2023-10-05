@@ -200,23 +200,31 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, LED_Pin|EN1_Pin|EN2_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, DOT_Pin|LED_Pin|EN1_Pin|EN2_Pin
+                          |EN3_Pin|EN4_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, SEG0_Pin|SEG1_Pin|SEG2_Pin|SEG3_Pin
-                          |SEG4_Pin|SEG5_Pin|GPIO_PIN_6, GPIO_PIN_RESET);
+                          |SEG4_Pin|SEG5_Pin|SEG6_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : LED_Pin EN1_Pin EN2_Pin */
-  GPIO_InitStruct.Pin = LED_Pin|EN1_Pin|EN2_Pin;
+  /*Configure GPIO pins : DOT_Pin LED_Pin */
+  GPIO_InitStruct.Pin = DOT_Pin|LED_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
+  /*Configure GPIO pins : EN1_Pin EN2_Pin EN3_Pin EN4_Pin */
+  GPIO_InitStruct.Pin = EN1_Pin|EN2_Pin|EN3_Pin|EN4_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
   /*Configure GPIO pins : SEG0_Pin SEG1_Pin SEG2_Pin SEG3_Pin
-                           SEG4_Pin SEG5_Pin PB6 */
+                           SEG4_Pin SEG5_Pin SEG6_Pin */
   GPIO_InitStruct.Pin = SEG0_Pin|SEG1_Pin|SEG2_Pin|SEG3_Pin
-                          |SEG4_Pin|SEG5_Pin|GPIO_PIN_6;
+                          |SEG4_Pin|SEG5_Pin|SEG6_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -234,18 +242,44 @@ void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim)
 	if(counter <= 0){
 		switch(stasus){
 		case 1:
-		HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, 1);
-		HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, 0);
-		display7SEG(2);
-		stasus = 2;
-		counter = 100;
-		break;
-		case 2:
+		display7SEG(1);
 		HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, 0);
 		HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, 1);
-		display7SEG(1);
+		HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, 1);
+		HAL_GPIO_WritePin(EN4_GPIO_Port, EN4_Pin, 1);
+
+		stasus = 2;
+		counter = 70;
+		break;
+		case 2:
+		display7SEG(2);
+		HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, 1);
+		HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, 0);
+		HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, 1);
+		HAL_GPIO_WritePin(EN4_GPIO_Port, EN4_Pin, 1);
+
+		stasus = 3;
+		counter = 70;
+		break;
+		case 3:
+		display7SEG(3);
+		HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, 1);
+		HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, 1);
+		HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, 0);
+		HAL_GPIO_WritePin(EN4_GPIO_Port, EN4_Pin, 1);
+
+		stasus = 4;
+		counter = 70;
+		break;
+		case 4:
+		display7SEG(0);
+		HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, 1);
+		HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, 1);
+		HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin, 1);
+		HAL_GPIO_WritePin(EN4_GPIO_Port, EN4_Pin, 0);
+
 		stasus = 1;
-		counter = 100;
+		counter = 70;
 		break;
 		default:
 			break;
