@@ -161,10 +161,13 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   setTimer0 (1000) ;
+  int hour = 15, minute = 8, second = 50;
   while (1)
   {
 	  if(timer0_flag == 1){
 		  second ++;
+		  HAL_GPIO_TogglePin(DOT_GPIO_Port, DOT_Pin);
+		  setTimer0(1000);
 	  }
 	  if(second >= 60) {
 		  second = 0;
@@ -178,7 +181,6 @@ int main(void)
 		  hour = 0;
 	  }
 	  updateClockBuffer(hour, minute);
-	  //HAL_Delay (1000) ;
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -319,7 +321,14 @@ int counter = 0;
 void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim)
 {
 	timer_run ();
-
+	if (index_led > 3){
+		index_led = 0;
+	}
+	counter --;
+	if(counter <= 0){
+		update7SEG(index_led++);
+		counter = 25;
+	}
 }
 /* USER CODE END 4 */
 
