@@ -236,16 +236,16 @@ void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim)
 		case 1:
 		HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, 1);
 		HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, 0);
-		display7SEG(2);
+		display7SEG(1);
 		stasus = 2;
-		counter = 100;
+		counter = 50;
 		break;
 		case 2:
 		HAL_GPIO_WritePin(EN1_GPIO_Port, EN1_Pin, 0);
 		HAL_GPIO_WritePin(EN2_GPIO_Port, EN2_Pin, 1);
-		display7SEG(1);
+		display7SEG(2);
 		stasus = 1;
-		counter = 100;
+		counter = 50;
 		break;
 		default:
 			break;

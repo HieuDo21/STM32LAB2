@@ -482,9 +482,9 @@ void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim)
  8000368:	d002      	beq.n	8000370 <HAL_TIM_PeriodElapsedCallback+0x28>
  800036a:	2b02      	cmp	r3, #2
  800036c:	d014      	beq.n	8000398 <HAL_TIM_PeriodElapsedCallback+0x50>
-		display7SEG(1);
+		display7SEG(2);
 		stasus = 1;
-		counter = 100;
+		counter = 50;
 		break;
 		default:
 			break;
@@ -499,16 +499,16 @@ void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim)
  800037c:	2180      	movs	r1, #128	; 0x80
  800037e:	4815      	ldr	r0, [pc, #84]	; (80003d4 <HAL_TIM_PeriodElapsedCallback+0x8c>)
  8000380:	f000 fbce 	bl	8000b20 <HAL_GPIO_WritePin>
-		display7SEG(2);
- 8000384:	2002      	movs	r0, #2
+		display7SEG(1);
+ 8000384:	2001      	movs	r0, #1
  8000386:	f7ff fee1 	bl	800014c <display7SEG>
 		stasus = 2;
  800038a:	4b11      	ldr	r3, [pc, #68]	; (80003d0 <HAL_TIM_PeriodElapsedCallback+0x88>)
  800038c:	2202      	movs	r2, #2
  800038e:	601a      	str	r2, [r3, #0]
-		counter = 100;
+		counter = 50;
  8000390:	4b0e      	ldr	r3, [pc, #56]	; (80003cc <HAL_TIM_PeriodElapsedCallback+0x84>)
- 8000392:	2264      	movs	r2, #100	; 0x64
+ 8000392:	2232      	movs	r2, #50	; 0x32
  8000394:	601a      	str	r2, [r3, #0]
 		break;
  8000396:	e014      	b.n	80003c2 <HAL_TIM_PeriodElapsedCallback+0x7a>
@@ -522,16 +522,16 @@ void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim)
  80003a4:	2180      	movs	r1, #128	; 0x80
  80003a6:	480b      	ldr	r0, [pc, #44]	; (80003d4 <HAL_TIM_PeriodElapsedCallback+0x8c>)
  80003a8:	f000 fbba 	bl	8000b20 <HAL_GPIO_WritePin>
-		display7SEG(1);
- 80003ac:	2001      	movs	r0, #1
+		display7SEG(2);
+ 80003ac:	2002      	movs	r0, #2
  80003ae:	f7ff fecd 	bl	800014c <display7SEG>
 		stasus = 1;
  80003b2:	4b07      	ldr	r3, [pc, #28]	; (80003d0 <HAL_TIM_PeriodElapsedCallback+0x88>)
  80003b4:	2201      	movs	r2, #1
  80003b6:	601a      	str	r2, [r3, #0]
-		counter = 100;
+		counter = 50;
  80003b8:	4b04      	ldr	r3, [pc, #16]	; (80003cc <HAL_TIM_PeriodElapsedCallback+0x84>)
- 80003ba:	2264      	movs	r2, #100	; 0x64
+ 80003ba:	2232      	movs	r2, #50	; 0x32
  80003bc:	601a      	str	r2, [r3, #0]
 		break;
  80003be:	e000      	b.n	80003c2 <HAL_TIM_PeriodElapsedCallback+0x7a>
