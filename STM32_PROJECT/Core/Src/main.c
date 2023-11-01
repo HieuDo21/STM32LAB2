@@ -249,7 +249,7 @@ void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim)
 		HAL_GPIO_WritePin(EN4_GPIO_Port, EN4_Pin, 1);
 
 		stasus = 2;
-		counter = 70;
+		counter = 50;
 		break;
 		case 2:
 		display7SEG(2);
@@ -259,7 +259,7 @@ void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim)
 		HAL_GPIO_WritePin(EN4_GPIO_Port, EN4_Pin, 1);
 
 		stasus = 3;
-		counter = 70;
+		counter = 50;
 		break;
 		case 3:
 		display7SEG(3);
@@ -269,7 +269,7 @@ void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim)
 		HAL_GPIO_WritePin(EN4_GPIO_Port, EN4_Pin, 1);
 
 		stasus = 4;
-		counter = 70;
+		counter = 50;
 		break;
 		case 4:
 		display7SEG(0);
@@ -279,7 +279,7 @@ void HAL_TIM_PeriodElapsedCallback ( TIM_HandleTypeDef * htim)
 		HAL_GPIO_WritePin(EN4_GPIO_Port, EN4_Pin, 0);
 
 		stasus = 1;
-		counter = 70;
+		counter = 50;
 		break;
 		default:
 			break;
